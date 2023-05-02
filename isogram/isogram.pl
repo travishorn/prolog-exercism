@@ -11,14 +11,7 @@ isogram(Word) :-
   re_replace("[^A-Z]"/g, "", UppercaseWord, CleanWord),
 
   % Split the word into a list of uppercase letters
-  atom_chars(CleanWord, Letters),
+  string_chars(CleanWord, Letters),
 
-  % Sort the letters. **This predicate also removes duplicates.**
-  sort(Letters, SortedLetters),
-
-  % Bind the number of letters in the de-duplicated list to NumLetters
-  length(SortedLetters, NumLetters),
-
-  % Check the number of letters in the original list against NumLetters. If it
-  % is equivalent, isogram/1 is true.
-  length(Letters, NumLetters).
+  % Returns true if Letters is a set (a proper list without duplicates)
+  is_set(Letters).
